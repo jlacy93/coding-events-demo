@@ -1,8 +1,6 @@
 package org.launchcode.codingevents.models;
 
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 import java.util.Objects;
 
 /**
@@ -24,11 +22,23 @@ public class Event {
     @Email(message = "Invalid email. Try again.")
     private String contactEmail;
 
-    public Event(String name, String description, String contactEmail) {
+    @NotBlank(message = "Location cannot be blank.")
+    private String location;
+
+    @Positive(message = "Number of attendees must be one or more.")
+    private int numberOfAttendees;
+
+    @AssertTrue(message = "This checkbox must be true.")
+    private boolean rsvp;
+
+    public Event(String name, String description, String contactEmail, String location, int numberOfAttendees, boolean rsvp) {
         this();
         this.name = name;
         this.description = description;
         this.contactEmail = contactEmail;
+        this.location = location;
+        this.numberOfAttendees = numberOfAttendees;
+        this.rsvp = rsvp;
     }
 
     public Event() {
@@ -58,6 +68,30 @@ public class Event {
 
     public void setContactEmail(String contactEmail) {
         this.contactEmail = contactEmail;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public int getNumberOfAttendees() {
+        return numberOfAttendees;
+    }
+
+    public void setNumberOfAttendees(int numberOfAttendees) {
+        this.numberOfAttendees = numberOfAttendees;
+    }
+
+    public boolean isRsvp() {
+        return rsvp;
+    }
+
+    public void setRsvp(boolean rsvp) {
+        this.rsvp = rsvp;
     }
 
     public int getId() {
