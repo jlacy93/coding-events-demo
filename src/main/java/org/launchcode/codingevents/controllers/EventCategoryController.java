@@ -34,7 +34,7 @@ public class EventCategoryController {
     @GetMapping("create")
     public String renderCreateEventCategoryForm(Model model){
         model.addAttribute("title", "Create Category");
-        model.addAttribute(new EventCategory());
+        model.addAttribute("category", new EventCategory());
         return "eventCategories/create";
     }
 
@@ -43,7 +43,7 @@ public class EventCategoryController {
 
         if (errors.hasErrors()) {
             model.addAttribute("title", "Create Category");
-            model.addAttribute(new EventCategory());
+            model.addAttribute("category", new EventCategory());
             return "eventCategories/create";
         }
 

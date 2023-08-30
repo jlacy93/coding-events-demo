@@ -1,5 +1,6 @@
 package org.launchcode.codingevents.controllers;
 
+import org.launchcode.codingevents.data.EventCategoryRepository;
 import org.launchcode.codingevents.data.EventsRepository;
 import org.launchcode.codingevents.models.Event;
 import org.launchcode.codingevents.models.EventType;
@@ -21,6 +22,9 @@ public class EventController {
     @Autowired
     private EventsRepository eventsRepository;
 
+    @Autowired
+    private EventCategoryRepository eventCategoryRepository;
+
     // findAll, save, findById
 
 
@@ -35,7 +39,7 @@ public class EventController {
     public String displayCreateEventForm(Model model) {
         model.addAttribute("title", "Create Event");
         model.addAttribute(new Event());
-        model.addAttribute("types", EventType.values());
+        model.addAttribute("types", eventCategoryRepository.findAll());
         return "events/create";
     }
 
